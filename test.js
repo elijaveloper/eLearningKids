@@ -1,9 +1,9 @@
-var Mongoose = require("mongoose");
+var mongoose = require("mongoose");
 var Schemas = require("./bin/schemas.js");
 
-Mongoose.connect("mongodb+srv://dbELK_elijah:secretpassword@elearningkids-zdukp.gcp.mongodb.net/test?retryWrites=true", {useNewUrlParser:true});
+mongoose.connect("mongodb+srv://dbELK_elijah:secretpassword@elearningkids-zdukp.gcp.mongodb.net/test?retryWrites=true", {useNewUrlParser:true});
 
-var conn = Mongoose.connection;
+var conn = mongoose.connection;
 conn.on('error', console.error.bind(console, 'connection error:'));
 conn.once('open', function() {
 
