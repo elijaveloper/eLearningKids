@@ -3,9 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/userRouter');
+
+mongoose.connect("mongodb+srv://dbELK_elijah:secretpassword@elearningkids-zdukp.gcp.mongodb.net/test?retryWrites=true", {useNewUrlParser:true});
+var conn = mongoose.connection;
+conn.on('error', console.error.bind(console, 'connection error:'));
 
 var app = express();
 
