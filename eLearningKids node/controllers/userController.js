@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const UserModel = require("../models/schemas.js").User;
+const UserModel = require("../models/schemas.js.js").User;
 
 mongoose.connect("mongodb+srv://dbELK_elijah:secretpassword@elearningkids-zdukp.gcp.mongodb.net/test?retryWrites=true", {useNewUrlParser:true});
 
