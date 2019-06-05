@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 const ActivityTypeSchema = new Schema({
-    activity_type_name: String
+    activity_type_name: String,
+    activity_type_description: String
 });
 
 const ActivitySchema = new Schema({
@@ -16,7 +17,10 @@ const ActivitySchema = new Schema({
         ref: "activitytype"
     },
     score_limit: Number,
-    subject_id: Number,
+    subject_id: {
+        type: Schema.Types.ObjectId,
+        ref: "subject"
+    },
     time_limit: Number, // in milliseconds
     config_file: String
 });

@@ -1,0 +1,18 @@
+extends layout
+//-TODO: Subject
+block content
+  h1= title
+  p Add #{title}
+  form(method='POST' action='/activities/types/add')
+    div.form-group
+      label(for='activity_type_name')
+      input#activity_type_name.form-control(type='text', placeholder='Activity Type Name' name='activity_type_name')
+    div.form-group
+      label(for='activity_type_description')
+      input#activity_type_description.form-control(type='text', placeholder='Activity Type Description' name='activity_type_description')
+    button.btn.btn-primary(type='submit') Add Activity Type
+  ul
+    each activity in activityTypes
+      li= activity
+    else
+      li There are no values

@@ -2,6 +2,7 @@ const ActivityModel = require("../models/activity.js").Activity;
 const ActivityTypeModel = require("../models/activity.js").ActivityType;
 const SubjectModel = require("../models/subject.js");
 const bcrypt = require("bcryptjs");
+const mongoose = require("mongoose");
 
 class ActivitiesController {
     
@@ -15,7 +16,7 @@ class ActivitiesController {
 // router.get('/activitytype/add',activitiesController.actTypeAddPage);
 // router.post('/activitytype/add',activitiesController.actTypeAddAction);
 
-    static async showActivitiesPage(req,res){
+    static async activitiesPage(req,res){
         try{
             let subjects = await SubjectModel.find({});
             let activityTypes = await ActivityTypeModel.find({});
@@ -43,11 +44,11 @@ class ActivitiesController {
         }
     }
 
-    static async showActivityTypesPage(req,res){
+    static async activityTypesPage(req,res){
         try{
             ActivityTypeModel.find({},function(err,activityTypes){
                 if(err) res.status(500).send(e);
-                res.render('activity',{title:"Activity Types",activities:activityTypes});
+                res.render('activitytypes',{title:"Activity Types",activityTypes:activityTypes});
             });
         }catch(e){
             console.log(e);
@@ -59,9 +60,9 @@ class ActivitiesController {
         try{
             let activity = new ActivityModel({
                 activity_name:req.body.activity_name,
-                activity_type_id:req.body.activity_type_id,
+                activity_type_id: mongoose.Types.ObjectId(req.body.activity_type_id),
                 score_limit: req.body.score_limit,
-                subject_id: req.body.subject_id,
+                subject_id: mongoose.Types.ObjectId(req.body.subject_id),
                 time_limit: req.body.time_limit, // in milliseconds
                 config_file: req.body.config_file
             });
@@ -69,7 +70,24 @@ class ActivitiesController {
             activity.save(function(err,activity){
                 if(err) return console.log(err);
                 console.log(activity.activity_name + " activity has been successfully saved!");
-                res.redirect("/");
+                res.redirect("/activities");
+            });
+        }catch(e){
+            res.status(500).send(e);
+        }
+    }
+
+    static async addActivityTypeAction(req,res){
+        try{
+            let activityType = new ActivityTypeModel({
+                activity_type_name:req.body.activity_type_name,
+                activity_type_description:req.body.activity_type_description
+            });
+
+            activityType.save(function(err,activityType){
+                if(err) return console.log(err);
+                console.log(activityType.activity_type_name + " activity type has been successfully saved!");
+                res.redirect("/activities/types");
             });
         }catch(e){
             res.status(500).send(e);
