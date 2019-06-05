@@ -18,17 +18,25 @@ class ActivitiesController {
     static async showActivitiesPage(req,res){
         try{
             let subjects = await SubjectModel.find({});
-            ActivityTypeModel.find({},function(err,activityTypes){
-                ActivityModel.find({},function(err,activities){
-                    if(err) res.status(500).send(e);
-                    res.render('activity',{
-                        title:"Activities",
-                        activities:activities,
-                        activityTypes:activityTypes,
-                        subjects:subjects
-                    });
-                });
+            let activityTypes = await ActivityTypeModel.find({});
+            let activities = await ActivityModel.find({});
+            res.render('activity',{
+                title:"Activities",
+                activities:activities,
+                activityTypes:activityTypes,
+                subjects:subjects
             });
+            // ActivityTypeModel.find({},function(err,activityTypes){
+            //     ActivityModel.find({},function(err,activities){
+            //         if(err) res.status(500).send(e);
+            //         res.render('activity',{
+            //             title:"Activities",
+            //             activities:activities,
+            //             activityTypes:activityTypes,
+            //             subjects:subjects
+            //         });
+            //     });
+            // });
         }catch(e){
             console.log(e);
             res.status(500).send(e);
