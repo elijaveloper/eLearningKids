@@ -17,8 +17,7 @@ const ActivitySchema = new Schema({
     },
     score_limit: Number,
     subject_id: Number,
-    isTimeLimited: Boolean,
-    Time_limit: Number, // in milliseconds
+    time_limit: Number, // in milliseconds
     config_file: String
 });
 

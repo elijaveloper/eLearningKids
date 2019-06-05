@@ -1,9 +1,8 @@
 const UserModel = require("../models/user.js");
 const bcrypt = require("bcryptjs");
 
-class UserController {
+class UsersController {
 
-    //TODO: Hash the incoming password
     static async loginAction(req,res){
         try{
             UserModel.findOne({username:req.body.username},function(err,user){
@@ -11,7 +10,7 @@ class UserController {
                     if(err) res.status(500).send(e);
                     res.render("index",{
                         title: user.nickname
-                    })
+                    });
                 });
             });
         }catch(e){
@@ -65,4 +64,4 @@ class UserController {
     }
 }
 
-module.exports = UserController;
+module.exports = UsersController;

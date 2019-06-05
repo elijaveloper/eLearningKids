@@ -1,0 +1,31 @@
+extends layout
+//-TODO: Subject
+block content
+  h1= title
+  p Add #{title}
+  form(method='POST' action='/activities/add')
+    div.form-group
+      label(for='activity_name')
+      input#activity_name.form-control(type='text', placeholder='Activity Name' name='activity_name')
+    div.form-group
+      label(for='activity_type')
+      select#activity_type.form-control(name='activity_type')
+        each activity in activityTypes
+          option(value=activity._id) #{activity.activity_type_name}
+    div.form-group
+      label(for='score_limit')
+      input#score_limit.form-control(type='text', placeholder='Score Limit' name='score_limit')
+    div.form-group
+      label(for='subject_id')
+      select#subject_id.form-control(name='subject_id')
+        each subj in subjects
+          option(value=subj._id) #{subj.subject_name}
+    div.form-group
+      label(for='time_limit')
+      input#time_limit.form-control(type='number', placeholder='Time Limit' name='Time_limit')
+    button.btn.btn-primary(type='submit') Add Activity
+  ul
+    each activity in activities
+      li= activity
+    else
+      li There are no values

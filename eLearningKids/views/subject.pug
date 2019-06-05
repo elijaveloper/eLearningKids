@@ -1,0 +1,18 @@
+extends layout
+//-TODO: Subject
+block content
+  h1= title
+  p Add #{title}
+  form(method='POST' action='/subjects/add')
+    div.form-group
+      label(for='subject_name')
+      input#subject_name.form-control(type='text', placeholder='Subject Name' name='subject_name')
+    div.form-group
+      label(for='subject_description')
+      input#subject_description.form-control(type='text', placeholder='Subject Description' name='subject_description')
+    button.btn.btn-primary(type='submit') Add subject
+  ul
+    each subject in subjects
+      li= subject
+    else
+      li There are no values
