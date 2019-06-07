@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
+var bcrypt = require("bcryptjs");
 // Save a reference to the Schema constructor `mongoose.model`
 let Schema = mongoose.Schema;
 
+const SALT_WORK_FACTOR = 10;
+
 const AccessLevelSchema = new Schema({
     access_name: String,
-    access_level: Number
+    access_level: Number,
+    access_description: String
 });
 
 const ManagerSchema = new Schema({
@@ -35,6 +39,24 @@ const ManagerSchema = new Schema({
         ref: "accesslevel"
     }
 });
+
+ManagerSchema.pre('save', function (next) {
+    var manager = this;
+    if (!manager.isModified('password')) {return next()};
+    bcrypt.hash(manager.password,SALT_WORK_FACTOR).then((hashedPassword) => {
+        manager.password = hashedPassword;
+        next();
+    })
+}, function (err) {
+    next(err)
+})
+
+ManagerSchema.methods.comparePassword = function(candidatePassword, cb) {
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if (err) return cb(err);
+        cb(null, isMatch);
+    });
+};
 
 const AccessLevel = mongoose.model("accesslevel",AccessLevelSchema);
 const Manager = mongoose.model("manager",ManagerSchema);

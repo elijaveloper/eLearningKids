@@ -1,0 +1,7 @@
+[98%] Class page logic
+[98%] Manager page logic
+[98%] Access page logic
+[98%] Activities page logic
+[98%] Class page logic
+[98%] Users page logic
+[0%] Student page logic

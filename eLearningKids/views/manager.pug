@@ -1,0 +1,36 @@
+extends layout
+//-TODO: Subject
+block content
+  h1= title
+  p Add #{title}
+  form(method='POST' action='/managers/add')
+    div.form-group
+      label(for='username')
+      input#username.form-control(type='text', placeholder='Username' name='username')
+    div.form-group
+      label(for='password')
+      input#password.form-control(type='password', placeholder='Password' name='password')
+    div.form-group
+      label(for='first_name')
+      input#first_name.form-control(type='text', placeholder='First Name' name='first_name')
+    div.form-group
+      label(for='middle_name')
+      input#middle_name.form-control(type='text', placeholder='Middle Name' name='middle_name')
+    div.form-group
+      label(for='last_name')
+      input#last_name.form-control(type='text', placeholder='Last Name' name='last_name')
+    div.form-group
+      label(for='date_of_birth')
+      input#date_of_birth.form-control(type='date', placeholder='Date of Birth' name='date_of_birth')
+    div.form-group
+      label(for='phone_number')
+      input#phone_number.form-control(type='text',placeholder='Phone Number',name='phone_number')
+    div.form-group
+      label(for='phone_nubmer')
+      input#email.form-control(type='text',placeholder='Email Address',name='email')
+    button.btn.btn-primary(type='submit') Sign up
+  ul
+    each manager in managers
+      li= manager
+    else
+      li There are no values

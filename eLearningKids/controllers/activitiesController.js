@@ -48,7 +48,7 @@ class ActivitiesController {
         try{
             ActivityTypeModel.find({},function(err,activityTypes){
                 if(err) res.status(500).send(e);
-                res.render('activitytypes',{title:"Activity Types",activityTypes:activityTypes});
+                res.render('activitytype',{title:"Activity Types",activityTypes:activityTypes});
             });
         }catch(e){
             console.log(e);

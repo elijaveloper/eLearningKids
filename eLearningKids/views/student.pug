@@ -1,0 +1,11 @@
+extends layout
+//-TODO: Student
+block content
+  h1= title
+  p Add #{title}
+  form(method='POST' action='/students/add')
+  ul
+    each student in students
+      li= student
+    else
+      li There are no values

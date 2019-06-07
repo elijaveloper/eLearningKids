@@ -3,13 +3,16 @@ let Schema = mongoose.Schema;
 
 const ClassInfoSchema = new Schema({
     acad_year: {
-        type: Number
+        type: Number,
+        unique: true
     },
     class_level: {
-        type: Number
+        type: Number,
+        unique: true
     },
     class_section: {
-        type: Number
+        type: Number,
+        unique: true
     }
 });
 

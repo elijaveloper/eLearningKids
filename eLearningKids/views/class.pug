@@ -1,0 +1,22 @@
+extends layout
+//-TODO: Subject
+block content
+  h1= title
+  p Add #{title}
+  form(method='POST' action='/classes/add')
+    div.form-group
+      select#acad_year.form-control(name='acad_year')
+        each year in ['2019','2020','2021']
+          option(value=year) #{year}
+    div.form-group
+      label(for='class_level')
+      input#class_level.form-control(type='number', placeholder='Class Level' name='class_level')
+    div.form-group
+      label(for='class_section')
+      input#class_section.form-control(type='number', placeholder='Class Section' name='class_section')
+    button.btn.btn-primary(type='submit') Add Class
+  ul
+    each _class in classes
+      li= _class
+    else
+      li There are no values

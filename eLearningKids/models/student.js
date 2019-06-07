@@ -7,10 +7,13 @@ const StudentInfoSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "user"
     },
-    class_id: {
-        type: Schema.Types.ObjectId,
-        ref: "classinfo"
-    },
+    classes:[{
+        class_id: {
+            type: Schema.Types.ObjectId,
+            ref: "classinfo"
+        },
+        timestamp: Date
+    }],
     student_number: {
         type: Number
     },

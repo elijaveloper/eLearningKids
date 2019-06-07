@@ -5,7 +5,7 @@ var userController = require('../controllers/usersController.js');
 router.get('/',userController.loginPage);
 router.post('/',userController.loginAction);
 
-router.get('/register',userController.registerPage);
-router.post('/register',userController.registerAction);
+router.get('/add',userController.addUserPage);
+router.post('/add',userController.addUserAction);
 
 module.exports = router;

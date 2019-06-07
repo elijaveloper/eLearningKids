@@ -8,6 +8,8 @@ class UsersController {
             UserModel.findOne({username:req.body.username},function(err,user){
                 user.comparePassword(req.body.password,function(err,isMatch){
                     if(err) res.status(500).send(e);
+
+                    //TODO: index
                     res.render("index",{
                         title: user.nickname
                     });
@@ -19,7 +21,7 @@ class UsersController {
         }
     }
 
-    static async registerAction(req,res){
+    static async addUserAction(req,res){
         try{
             let user = new UserModel({
                 username:req.body.username,
@@ -55,9 +57,9 @@ class UsersController {
         }
     }
 
-    static async registerPage(reg,res){
+    static async addUserPage(reg,res){
         try{
-            res.render('register');
+            res.render('user');
         }catch(e){
             res.status(500).send(e);
         }

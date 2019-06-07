@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p Add #{title}
+  form(method='POST' action='/managers/access/add')
+    div.form-group
+      label(for='access_name')
+      input#access_name.form-control(type='text', placeholder='Access Name' name='access_name')
+    div.form-group
+      label(for='access_level')
+      input#access_level.form-control(type='number', placeholder='Access Level' name='access_level')
+    div.form-group
+      label(for='access_description')
+      input#access_description.form-control(type='text', placeholder='Access Description' name='access_description')
+    button.btn.btn-primary(type='submit') Add Access Level
+  ul
+    each al in accessLevel
+      li= al
+    else
+      li There are no values

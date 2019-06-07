@@ -4,7 +4,7 @@ block content
   h1= title
   p Welcome to #{title}
   p Please register to continue
-  form(method='POST' action='/users/register')
+  form(method='POST' action='/users/add')
     div.form-group
       label(for='username')
       input#name.form-control(type='text', placeholder='username' name='username')
@@ -27,4 +27,3 @@ block content
       label(for='date_of_birth')
       input#name.form-control(type='date', placeholder='username' name='date_of_birth')
     button.btn.btn-primary(type='submit') Sign up
-
